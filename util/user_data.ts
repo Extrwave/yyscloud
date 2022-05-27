@@ -1,3 +1,5 @@
+import bot from "ROOT"
+import { headers, getWalletURL } from "./api"
 import { InputParameter } from "@modules/command";
 
 //redis保存用户信息
@@ -7,6 +9,24 @@ export async function savaUserData( token: string, i: InputParameter ) {
     await i.redis.setHashField( dbKey, "device_name", getDevice( "name" ) );
     await i.redis.setHashField( dbKey, "device_model", getDevice( "model" ) );
     await i.redis.setHashField( dbKey, "device_id", getDevice( "id" ) );
+}
+
+//检查token有效性
+export async function checkToken( userId: number ) {
+    const dbKey = "extr-wave-yys-sign." + userId;
+    //获取用户信息填充header
+    headers[ "x-rpc-combo_token" ] = await bot.redis.getHashField( dbKey, "token" );
+    headers[ "x-rpc-device_name" ] = await bot.redis.getHashField( dbKey, "device_name" );
+    headers[ "x-rpc-device_model" ] = await bot.redis.getHashField( dbKey, "device_model" );
+    headers[ "x-rpc-device_id" ] = await bot.redis.getHashField( dbKey, "device_id" );
+
+    const message = await getWalletURL( headers );
+    const data = JSON.parse( message );
+    if ( data.retcode === 0 && data.message === "OK" ) {
+        return true;
+    }
+    return false;
+
 }
 
 
