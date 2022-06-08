@@ -1,29 +1,18 @@
-# 云原神签到插件 v1.0
+> 如果您没有基础的 IT 知识和 / 或利用搜索引擎的能力甚至不懂[提问的艺术](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md)
+>
+> 请现在放弃使用的想法并关闭此文档，不用浪费时间
+>
+> 仅供学习交流使用，严禁用于非法活动，请在24小时内删除 
+>
+> 如有侵犯您的合法权益，请联系我立即删除~~
 
-## 简介
-
-[Adachi-BOT](https://github.com/SilveryStar/Adachi-BOT) 的衍生插件，实现**云原神**每日签到功能
-
-白嫖15分钟，有一说一，真抠门~
-
-## 安装教程
-
-代码下载到`Adachi-BOT/src/plugins/`目录下
-~~~shell
-cd src/plugins
-git clone https://github.com/Extrwave/cloud_genshin.git
-~~~
-
-## Token获取
-
-[云原神获取登陆Token | GUIの小站 (ethreal.cn)](https://blog.ethreal.cn/archives/yysgettoken)
 ## Android
 
 手机安装**云原神**客户端
 
 安装一个手机上的抓包软件（例如HttpCanary）
 
-下载地址先放这儿：https://drive.ethreal.cn/MyShare
+下载地址先放这儿：https://www.123pan.com/s/laLDVv-prkw3
 
 ### HttpCanary
 
@@ -36,28 +25,27 @@ git clone https://github.com/Extrwave/cloud_genshin.git
 * 打开小黄鸟
 * 根据提示开启VPN，安装小黄鸟证书，跳过移动至系统证书目录（安卓7默认信任用户证书）
 
-![](https://drive.ethreal.cn/p/Loader/Snipaste_2022-05-27_01-06.png)
+![](https://drive.ethreal.cn//img/Snipaste_2022-05-27_01-06-1654016422.png)
 
 * 目标应用
 
-![](https://drive.ethreal.cn/p/Loader/Snipaste_2022-05-27_01-07.png)
+![](https://drive.ethreal.cn//img/Snipaste_2022-05-27_01-07-1654016423.png)
 
 * 添加应用，选中云原神
 
-![](https://drive.ethreal.cn/p/Loader/Snipaste_2022-05-27_01-08.png)
+![](https://drive.ethreal.cn//img/Snipaste_2022-05-27_01-08-1654016425.png)
 
 * 先直接进入云原神登录好，然后返回小黄鸟开启抓包，点击云原神账户界面一下
 * 返回小黄鸟找到如图所示链接
 
-![](https://drive.ethreal.cn/p/Loader/Snipaste_2022-05-27_01-09.png)
+![](https://drive.ethreal.cn//img/Snipaste_2022-05-27_01-09-1654016427.png)
 
 * 点击去token就能看见了
 
-![](https://drive.ethreal.cn/p/Loader/Snipaste_2022-05-27_01-10.png)
+![](https://drive.ethreal.cn/img/1654048872487-1654048873.png)
 
 ## IOS
 
 苹果用户应用商店下载Stream
 
 然后操作类似上面
-
