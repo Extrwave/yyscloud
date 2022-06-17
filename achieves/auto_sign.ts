@@ -1,6 +1,7 @@
 import bot from "ROOT";
 import { scheduleJob } from "node-schedule";
-import { getWalletURL, getAnnouncementURL, getNotificationURL, headers } from "../util/api";
+import { getWalletURL, getAnnouncementURL, getNotificationURL, HEADERS } from "../util/api";
+import { getHeaders } from "#cloud_genshin/util/header";
 import { MessageType } from "@modules/message";
 
 
@@ -12,14 +13,10 @@ export async function autoSign() {
         for ( let key of keys ) {
             let userId = key.split( '.' )[ 1 ];
             const dbKey = "extr-wave-yys-sign." + userId;
-            bot.logger.info( `正在进行用户 ${userId} 云原神签到` );
+            bot.logger.info( `正在进行用户 ${ userId } 云原神签到` );
             const sender = bot.message.getSendMessageFunc( Number.parseInt( userId ), MessageType.Private, 1 );
             //获取用户信息填充header
-            headers[ "x-rpc-combo_token" ] = await bot.redis.getHashField( dbKey, "token" );
-            headers[ "x-rpc-device_name" ] = await bot.redis.getHashField( dbKey, "device_name" );
-            headers[ "x-rpc-device_model" ] = await bot.redis.getHashField( dbKey, "device_model" );
-            headers[ "x-rpc-device_id" ] = await bot.redis.getHashField( dbKey, "device_id" );
-
+            const headers: HEADERS = await getHeaders(  Number.parseInt(userId) );
             const message = await getWalletURL( headers );
             const data = JSON.parse( message );
             if ( data.retcode === 0 && data.message === "OK" ) {
