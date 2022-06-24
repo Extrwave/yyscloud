@@ -1,32 +1,70 @@
-import { PluginSetting } from "@modules/plugin";
+import { PluginSetting, PluginSubSetting, SubInfo } from "@modules/plugin";
 import { OrderConfig } from "@modules/command";
 import { autoSign } from "./achieves/auto_sign";
+import { MessageScope } from "@modules/message";
+import { BOT } from "@modules/bot";
 
-const msign_enable: OrderConfig = {
+const signEnable: OrderConfig = {
 	type: "order",
 	cmdKey: "extr-wave-yysign.enable",
 	desc: [ "开启云原神签到", "" ],
 	headers: [ "onyys" ],
-	regexps: [ ".+" ],
+	regexps: [],
 	main: "achieves/enable_sign",
-	detail: "参数为token，获取方式查看 https://blog.ethreal.cn"
+	scope: MessageScope.Private,
 };
 
-const msign_disable: OrderConfig = {
+const signConfirm: OrderConfig = {
+	type: "order",
+	cmdKey: "extr-wave-yysign.confirm",
+	desc: [ "验证云原神Token", "" ],
+	headers: [ "yconfirm" ],
+	regexps: [ ".+" ],
+	main: "achieves/enable_sign",
+	scope: MessageScope.Private,
+	display: false,
+	ignoreCase: false
+}
+
+const signDisable: OrderConfig = {
 	type: "order",
 	cmdKey: "extr-wave-yysign.disable",
 	desc: [ "取消云原神签到", "" ],
 	headers: [ "offyys" ],
 	regexps: [],
 	main: "achieves/disable_sign",
-	detail: ""
+	scope: MessageScope.Private,
 };
+
+export async function subs( { redis }: BOT ): Promise<SubInfo[]> {
+	const yysSub: string[] = await redis.getKeysByPrefix( "extr-wave-yys-sign-" );
+	const yysSubUsers: number[] = yysSub.map( el => {
+		return parseInt( <string>el.split( "-" ).pop() );
+	} );
+	
+	return [ {
+		name: "云原神签到",
+		users: yysSubUsers
+	} ]
+}
+
+export async function subInfo(): Promise<PluginSubSetting> {
+	return {
+		subs: subs,
+		reSub: exitGuildClean
+	}
+}
+
+/* 取消他人云原神签到服务方法 */
+async function exitGuildClean( userId: number, { redis }: BOT ) {
+	await redis.deleteKey( `extr-wave-yys-sign.${ userId }` );
+}
 
 // 不可 default 导出，函数名固定
 export async function init(): Promise<PluginSetting> {
 	await autoSign();
 	return {
 		pluginName: "cloud_genshin",
-		cfgList: [ msign_enable, msign_disable ]
+		cfgList: [ signEnable, signConfirm, signDisable ]
 	};
 }
