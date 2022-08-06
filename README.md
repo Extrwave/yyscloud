@@ -25,24 +25,24 @@
 * 打开小黄鸟
 * 根据提示开启VPN，安装小黄鸟证书，跳过移动至系统证书目录（安卓7默认信任用户证书）
 
-![](https://drive.ethreal.cn//img/Snipaste_2022-05-27_01-06-1654016422.png)
+![](http://cdn.ethreal.cn/img/Snipaste_2022-05-27_01-06-1654016422.png)
 
 * 目标应用
 
-![](https://drive.ethreal.cn//img/Snipaste_2022-05-27_01-07-1654016423.png)
+![](http://cdn.ethreal.cn/img/Snipaste_2022-05-27_01-07-1654016423.png)
 
 * 添加应用，选中云原神
 
-![](https://drive.ethreal.cn//img/Snipaste_2022-05-27_01-08-1654016425.png)
+![](http://cdn.ethreal.cn/img/Snipaste_2022-05-27_01-08-1654016425.png)
 
 * 先直接进入云原神登录好，然后返回小黄鸟开启抓包，点击云原神账户界面一下
 * 返回小黄鸟找到如图所示链接
 
-![](https://drive.ethreal.cn//img/Snipaste_2022-05-27_01-09-1654016427.png)
+![](http://cdn.ethreal.cn/img/Snipaste_2022-05-27_01-09-1654016427.png)
 
 * 点击去token就能看见了
 
-![](https://drive.ethreal.cn/img/1654048872487-1654048873.png)
+![](http://cdn.ethreal.cn/img/1654048872487-1654048873.png)
 
 ## IOS
 
